@@ -7,21 +7,20 @@ AllPixelsPlotter::AllPixelsPlotter(std::vector<std::string> fileNames, std::stri
     m_PlotPath(plotPath)
 {
     this->ReadData();
-/*    this->PlotToTPulseHeightAllSets(m_ToTs,"TargetTot");
+    this->PlotToTPulseHeightAllSets(m_ToTs,"TargetTot");
     this->PlotToTPulseHeightAllSets(m_ToTs_X,"Tot_X");
     this->PlotToTPulseHeightAllSets(m_ToTs_X_Y,"Tot_X_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_Y,"Tot");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX_Y,"Tot_nX_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX,"Tot_nX");
     this->PlotRiseTimePulseHeightAllSets();
-*/
+
     for (std::vector<int>::const_iterator it = m_UniqueSetNumbers.begin(); it != m_UniqueSetNumbers.end(); ++it)
     {
         int setNumber = *it;
         this->PlotToTPulseHeightAllPixelsInSet(setNumber,m_ToTs,"TargetTot");
         this->PlotToTPulseHeightAllPixelsInSet(setNumber,m_ToTs_X,"Tot_X");
         this->PlotRiseTimePulseHeightAllPixelsInSet(setNumber);
-        break;
     }
 }
 
@@ -310,7 +309,7 @@ void AllPixelsPlotter::PlotRiseTimePulseHeightAllSets()
                 continue;
 
             int counter = iter - m_SetNumber.begin();
-            int riseTime = m_RiseTime.at(counter);
+            float riseTime = m_RiseTime.at(counter);
             float pulseHeight = m_FittedPulseHeight.at(counter);
             pTH2F->Fill(pulseHeight,riseTime);
         }
@@ -379,7 +378,7 @@ void AllPixelsPlotter::PlotRiseTimePulseHeightAllPixelsInSet(int activeSetNumber
     for (std::vector<int>::const_iterator it = m_UniquePixelNumbers.begin(); it != m_UniquePixelNumbers.end(); ++it)
     {
         int pixelNumber = *it;
-        TH2F *pTH2F = new TH2F("TH2F","Rise Time vs Pulse Height", 175, 0, 700, 16, -0.5, 15.5);
+        TH2F *pTH2F = new TH2F("TH2F","Rise Time vs Pulse Height", 70, 0, 700, 120, 0, 1200);
 
         for (std::vector<int>::const_iterator iter = m_PixelNumber.begin(); iter != m_PixelNumber.end(); ++iter)
         {
@@ -392,7 +391,7 @@ void AllPixelsPlotter::PlotRiseTimePulseHeightAllPixelsInSet(int activeSetNumber
             if (setNumber != activeSetNumber)
                 continue;
 
-            int riseTime = m_RiseTime.at(counter);
+            float riseTime = m_RiseTime.at(counter);
             float pulseHeight = m_FittedPulseHeight.at(counter);
             pTH2F->Fill(pulseHeight,riseTime);
         }
@@ -434,7 +433,7 @@ void AllPixelsPlotter::PlotRiseTimePulseHeightAllPixelsInSet(int activeSetNumber
         pTLegend->AddEntry(pTGraph,label.c_str(),"p");
 
         pCanvas->cd();
-        if (it - m_UniquePixelNumbers.begin() == 0)
+        if (pixelCounter == 0)
             pTGraph->Draw("AP");
         else
             pTGraph->Draw("same P");
