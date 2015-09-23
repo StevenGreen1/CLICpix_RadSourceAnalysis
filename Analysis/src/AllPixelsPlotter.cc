@@ -7,20 +7,21 @@ AllPixelsPlotter::AllPixelsPlotter(std::vector<std::string> fileNames, std::stri
     m_PlotPath(plotPath)
 {
     this->ReadData();
-    this->PlotToTPulseHeightAllSets(m_ToTs,"TargetTot");
+/*    this->PlotToTPulseHeightAllSets(m_ToTs,"TargetTot");
     this->PlotToTPulseHeightAllSets(m_ToTs_X,"Tot_X");
     this->PlotToTPulseHeightAllSets(m_ToTs_X_Y,"Tot_X_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_Y,"Tot");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX_Y,"Tot_nX_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX,"Tot_nX");
     this->PlotRiseTimePulseHeightAllSets();
-
+*/
     for (std::vector<int>::const_iterator it = m_UniqueSetNumbers.begin(); it != m_UniqueSetNumbers.end(); ++it)
     {
         int setNumber = *it;
         this->PlotToTPulseHeightAllPixelsInSet(setNumber,m_ToTs,"TargetTot");
         this->PlotToTPulseHeightAllPixelsInSet(setNumber,m_ToTs_X,"Tot_X");
         this->PlotRiseTimePulseHeightAllPixelsInSet(setNumber);
+        break;
     }
 }
 
@@ -264,10 +265,10 @@ void AllPixelsPlotter::PlotToTPulseHeightAllPixelsInSet(int activeSetNumber, std
         pTGraph->GetYaxis()->SetTitle("ToT");
         pTGraph->GetYaxis()->SetLimits(0.0,16.0);
         pTGraph->GetYaxis()->SetRangeUser(0.0,16.0);
-        int setCounter = it - m_UniqueSetNumbers.begin();
-        pTGraph->SetLineColor(this->RootColor(setCounter));
-        pTGraph->SetMarkerColor(this->RootColor(setCounter));
-        pTGraph->SetMarkerStyle(this->RootMarker(setCounter));
+        int pixelCounter = it - m_UniquePixelNumbers.begin();
+        pTGraph->SetLineColor(this->RootColor(pixelCounter));
+        pTGraph->SetMarkerColor(this->RootColor(pixelCounter));
+        pTGraph->SetMarkerStyle(this->RootMarker(pixelCounter));
 
         std::string label = "Pixel " + IntToString(pixelNumber);
         pTLegend->AddEntry(pTGraph,label.c_str(),"p");
@@ -424,10 +425,10 @@ void AllPixelsPlotter::PlotRiseTimePulseHeightAllPixelsInSet(int activeSetNumber
         pTGraph->GetYaxis()->SetLimits(0.0,1200.0);
         pTGraph->GetYaxis()->SetRangeUser(0.0,1200.0);
         pTGraph->GetYaxis()->SetTitleOffset(1.4);
-        int setCounter = it - m_UniqueSetNumbers.begin();
-        pTGraph->SetLineColor(this->RootColor(setCounter));
-        pTGraph->SetMarkerColor(this->RootColor(setCounter));
-        pTGraph->SetMarkerStyle(this->RootMarker(setCounter));
+        int pixelCounter = it - m_UniquePixelNumbers.begin();
+        pTGraph->SetLineColor(this->RootColor(pixelCounter));
+        pTGraph->SetMarkerColor(this->RootColor(pixelCounter));
+        pTGraph->SetMarkerStyle(this->RootMarker(pixelCounter));
 
         std::string label = "Pixel " + IntToString(pixelNumber);
         pTLegend->AddEntry(pTGraph,label.c_str(),"p");
