@@ -24,6 +24,8 @@
 #include "TText.h"
 #include "TVector.h"
 
+#include "AllPixelsPlotter.h"
+
 void makePlots(std::string setNumber, std::string resultsFileName, int pixelNumber, std::string pathForPlots, std::vector<float> *meanToT, std::vector<float> *pulseHeight, std::vector<float> *meanRiseTime, std::vector<float> *pulseHeightForRiseTime, int totCounter, std::string briefToTTitle, std::string totTitle);
 
 void makePlots2(std::string setNumber, std::string resultsFileName, int pixelNumber, std::string pathForPlots, std::vector<float> *meanRiseTime, std::vector<float> *pulseHeightForRiseTime);
@@ -37,8 +39,20 @@ int main(int argc, char **argv)
 {
     gStyle->SetOptStat(kFALSE); 
 
-    std::string pathForPlots = "/afs/cern.ch/work/s/sgreen/PixelData/Plots";
+    std::string pathForPlots = "/afs/cern.ch/work/s/sgreen/PixelData/Plots/";
+    std::vector<std::string> resultsFiles;
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET9_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET10_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET12_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET13_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET14_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET15_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SET16_Detailed_v2.dat");
+    resultsFiles.push_back("/afs/cern.ch/work/s/sgreen/PixelData/Results/PixelCalibration_SETNoCLICpix_Detailed_v2.dat");
 
+    AllPixelsPlotter *pAllPixelsPlotter = new AllPixelsPlotter(resultsFiles, pathForPlots);
+
+/*
     static const int rootColorArray[] = {1,2,3,4,5,6,7,8,9};
     static const int rootMarkerArray[] = {20,21,22,23};
 
@@ -56,6 +70,9 @@ int main(int argc, char **argv)
 
     static const std::string briefPositionNamesArray[] = {"TargetPixelToT", "TargetPlusXToT", "TargetPlusXPlusYToT", "TargetPlusYToT", "TargetMinusXPlusYToT", "TargetMinusXToT"};
     std::vector<std::string> briefPositionNames (briefPositionNamesArray, briefPositionNamesArray + sizeof(briefPositionNamesArray) / sizeof(briefPositionNamesArray[0]) );
+
+    
+
 
     for (int positionCounter = 0; positionCounter < positionNames.size(); positionCounter++)
     {
@@ -303,7 +320,7 @@ int main(int argc, char **argv)
         }
 
         delete pCanvas_TGraph_RiseTimeFull, pCanvas_TGraph_Full, pTLegend_TGraph_Full, pTLegend_TGraph_RiseTimeFull;
-    }
+    }*/
 }
 
 //============================================================
