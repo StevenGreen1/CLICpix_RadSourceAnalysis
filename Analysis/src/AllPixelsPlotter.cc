@@ -10,7 +10,7 @@ AllPixelsPlotter::AllPixelsPlotter(std::vector<std::string> fileNames, std::stri
     this->PlotToTPulseHeightAllSets(m_ToTs,"TargetTot");
     this->PlotToTPulseHeightAllSets(m_ToTs_X,"Tot_X");
     this->PlotToTPulseHeightAllSets(m_ToTs_X_Y,"Tot_X_Y");
-    this->PlotToTPulseHeightAllSets(m_ToTs_Y,"Tot");
+    this->PlotToTPulseHeightAllSets(m_ToTs_Y,"Tot_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX_Y,"Tot_nX_Y");
     this->PlotToTPulseHeightAllSets(m_ToTs_nX,"Tot_nX");
     this->PlotRiseTimePulseHeightAllSets();
