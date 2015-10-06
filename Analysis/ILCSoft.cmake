@@ -3,7 +3,7 @@
 # for the installation located at [ /afs/cern.ch/eng/clic/work/ilcsoft/v01-17-07.p03 ]
 ################################################################################
 
-SET( ILC_HOME "/afs/cern.ch/eng/clic/work/ilcsoft/v01-17-07.p03" CACHE PATH "Path to ILC Software" FORCE)
+SET( ILC_HOME "/afs/desy.de/project/ilcsoft/sw/x86_64_gcc44_sl6/v01-17-07" CACHE PATH "Path to ILC Software" FORCE)
 MARK_AS_ADVANCED( ILC_HOME )
 
 SET( CMAKE_PREFIX_PATH 
